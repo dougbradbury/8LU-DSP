@@ -44,7 +44,7 @@
 #include "karokeVersion.h"
 
 // Note that resource IDs must be spaced 2 apart for the 'STR ' name and description
-#define kAudioUnitResID_karoke				1000
+#define kAudioUnitResID_karoke				1004
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ karoke~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -54,8 +54,8 @@
 #define COMP_MANUF		karoke_COMP_MANF	
 
 #define VERSION			kkarokeVersion
-#define NAME			"8th Light: karoke"
-#define DESCRIPTION		"karoke AU"
+#define NAME			"DougB: karoke with bass"
+#define DESCRIPTION		"karoke bass AU"
 #define ENTRY_POINT		"karokeEntry"
 
 #include "AUResources.r"

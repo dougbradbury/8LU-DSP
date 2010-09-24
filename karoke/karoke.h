@@ -41,6 +41,8 @@
 */
 #include "AUEffectBase.h"
 #include "karokeVersion.h"
+#include "FirFilter.h"
+#include "CircularBuffer.h"
 
 #if AU_DEBUG_DISPATCHER
 	#include "AUDebugDispatcher.h"
@@ -103,7 +105,8 @@ public:
 										 const 	AudioBufferList& 	inBufferList, 
 										 AudioBufferList&	outBufferList, 
 										 UInt32			iFrames);
-	
+private:
+	FirFilter filter;	
 
 };
 

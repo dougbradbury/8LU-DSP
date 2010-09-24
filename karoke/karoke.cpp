@@ -44,6 +44,7 @@
 	
 =============================================================================*/
 #include "karoke.h"
+#include "low_pass_filter.h"
 
 #define NUM_INPUTS 2
 #define NUM_OUTPUTS 2
@@ -57,7 +58,8 @@ COMPONENT_ENTRY(karoke)
 //	karoke::karoke
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 karoke::karoke(AudioUnit component)
-	: AUEffectBase(component, false)
+	: AUEffectBase(component, false),
+filter(FILTER_LENTGH)
 {
 	CreateElements();
 	CAStreamBasicDescription streamDescIn;
@@ -78,6 +80,8 @@ karoke::karoke(AudioUnit component)
 	mDebugDispatcher = new AUDebugDispatcher (this);
 #endif
 	
+
+	filter.setCoeffecients(dblp_sfp, FILTER_LENTGH);
 }
 
 UInt32 karoke::SupportedNumChannels (const AUChannelInfo** outInfo)
@@ -139,8 +143,8 @@ OSStatus			karoke::GetParameterInfo(AudioUnitScope		inScope,
                 AUBase::FillInParameterName (outParameterInfo, kParameterOneName, false);
                 outParameterInfo.unit = kAudioUnitParameterUnit_LinearGain;
                 outParameterInfo.minValue = 0.0;
-                outParameterInfo.maxValue = 1;
-                outParameterInfo.defaultValue = kDefaultValue_ParamOne;
+                outParameterInfo.maxValue = 2;
+                outParameterInfo.defaultValue = 1.0;
                 break;
             default:
                 result = kAudioUnitErr_InvalidParameter;
@@ -178,6 +182,7 @@ OSStatus			karoke::GetProperty(	AudioUnitPropertyID inID,
 	return AUEffectBase::GetProperty (inID, inScope, inElement, outData);
 }
 
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //	karoke::ProcessBufferLists
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -191,11 +196,17 @@ OSStatus karoke::ProcessBufferLists	(AudioUnitRenderActionFlags&	iFlags,
 	float *leftOut = (float*)outBufferList.mBuffers[0].mData;
 	float *rightOut = (float*)outBufferList.mBuffers[1].mData;
 
+	Float32 gain = GetParameter( kParam_One );
 	
 	while (iFrames > 0) {
 		
-		*leftOut = *leftSample; 
-		*rightOut = *rightSample; 
+		float bass = filter.process(*leftSample);
+		float karaoked = *leftSample - *rightSample;
+
+		float output = karaoked + gain*bass;
+
+		*leftOut = output; 
+		*rightOut = output; 
 		
 		iFrames--;
 		leftSample++;

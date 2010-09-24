@@ -1,3 +1,9 @@
 karoke/build/**/*
 *.mode1v3
 *.pbxuser
+*.o
+*.d
+CppUTest_tests
+CppUTest/lib
+filter_tests
+filter/lib

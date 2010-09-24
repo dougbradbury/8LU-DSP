@@ -11,6 +11,11 @@
 		3EEA126F089847F5002C6BFC /* CAVectorUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EEA126C089847F5002C6BFC /* CAVectorUnit.h */; };
 		3EEA1270089847F5002C6BFC /* CAVectorUnitTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EEA126D089847F5002C6BFC /* CAVectorUnitTypes.h */; };
 		7044B5BF1239FFFA003B79A2 /* karoke.component in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D01CCD20486CAD60068D4B7 /* karoke.component */; };
+		7060C56E12432BF800CB5814 /* FirFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7060C56C12432BF800CB5814 /* FirFilter.cpp */; };
+		7060C56F12432BF800CB5814 /* CircularBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7060C56D12432BF800CB5814 /* CircularBuffer.cpp */; };
+		7060C57212432C1300CB5814 /* CircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7060C57012432C1300CB5814 /* CircularBuffer.h */; };
+		7060C57312432C1300CB5814 /* FirFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7060C57112432C1300CB5814 /* FirFilter.h */; };
+		7060C6971243A09E00CB5814 /* low_pass_filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7060C6961243A09E00CB5814 /* low_pass_filter.h */; };
 		8B4119B70749654200361ABE /* karoke.r in Rez */ = {isa = PBXBuildFile; fileRef = 8BA05A680720730100365D66 /* karoke.r */; };
 		8BA05A6B0720730100365D66 /* karoke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BA05A660720730100365D66 /* karoke.cpp */; };
 		8BA05A6E0720730100365D66 /* karokeVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BA05A690720730100365D66 /* karokeVersion.h */; };
@@ -70,6 +75,11 @@
 		3EEA126B089847F5002C6BFC /* CAVectorUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CAVectorUnit.cpp; sourceTree = "<group>"; };
 		3EEA126C089847F5002C6BFC /* CAVectorUnit.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CAVectorUnit.h; sourceTree = "<group>"; };
 		3EEA126D089847F5002C6BFC /* CAVectorUnitTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CAVectorUnitTypes.h; sourceTree = "<group>"; };
+		7060C56C12432BF800CB5814 /* FirFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirFilter.cpp; sourceTree = "<group>"; };
+		7060C56D12432BF800CB5814 /* CircularBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CircularBuffer.cpp; sourceTree = "<group>"; };
+		7060C57012432C1300CB5814 /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularBuffer.h; sourceTree = "<group>"; };
+		7060C57112432C1300CB5814 /* FirFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirFilter.h; sourceTree = "<group>"; };
+		7060C6961243A09E00CB5814 /* low_pass_filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = low_pass_filter.h; sourceTree = "<group>"; };
 		8B5C7FBF076FB2C200A15F61 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		8BA05A660720730100365D66 /* karoke.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = karoke.cpp; sourceTree = "<group>"; };
 		8BA05A670720730100365D66 /* karoke.exp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.exports; path = karoke.exp; sourceTree = "<group>"; };
@@ -163,6 +173,7 @@
 		08FB77ADFE841716C02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				7060C55612431B8B00CB5814 /* filter */,
 				8BA05A56072072A900365D66 /* AU Source */,
 				8BA05AEB0720742700365D66 /* PublicUtility */,
 				8BA05A7D072073D200365D66 /* AUPublic */,
@@ -178,6 +189,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7060C55612431B8B00CB5814 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				7060C57012432C1300CB5814 /* CircularBuffer.h */,
+				7060C57112432C1300CB5814 /* FirFilter.h */,
+				7060C56C12432BF800CB5814 /* FirFilter.cpp */,
+				7060C56D12432BF800CB5814 /* CircularBuffer.cpp */,
+			);
+			name = filter;
+			sourceTree = "<group>";
+		};
 		8BA05A56072072A900365D66 /* AU Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +208,7 @@
 				8BA05A670720730100365D66 /* karoke.exp */,
 				8BA05A680720730100365D66 /* karoke.r */,
 				8BA05A690720730100365D66 /* karokeVersion.h */,
+				7060C6961243A09E00CB5814 /* low_pass_filter.h */,
 			);
 			name = "AU Source";
 			sourceTree = "<group>";
@@ -293,6 +316,9 @@
 				3EEA126F089847F5002C6BFC /* CAVectorUnit.h in Headers */,
 				3EEA1270089847F5002C6BFC /* CAVectorUnitTypes.h in Headers */,
 				F7C347F10ECE5AF8008ADFB6 /* AUBaseHelper.h in Headers */,
+				7060C57212432C1300CB5814 /* CircularBuffer.h in Headers */,
+				7060C57312432C1300CB5814 /* FirFilter.h in Headers */,
+				7060C6971243A09E00CB5814 /* low_pass_filter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +423,8 @@
 				8BA05B070720754400365D66 /* CAAUParameter.cpp in Sources */,
 				3EEA126E089847F5002C6BFC /* CAVectorUnit.cpp in Sources */,
 				F7C347F00ECE5AF8008ADFB6 /* AUBaseHelper.cpp in Sources */,
+				7060C56E12432BF800CB5814 /* FirFilter.cpp in Sources */,
+				7060C56F12432BF800CB5814 /* CircularBuffer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

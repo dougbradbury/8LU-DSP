@@ -46,7 +46,7 @@
 #ifdef DEBUG
 	#define kkarokeVersion 0xFFFFFFFF
 #else
-	#define kkarokeVersion 0x00010000	
+	#define kkarokeVersion 0x00010001	
 #endif
 
 //~~~~~~~~~~~~~~  Change!!! ~~~~~~~~~~~~~~~~~~~~~//
